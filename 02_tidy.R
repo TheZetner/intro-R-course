@@ -1,5 +1,5 @@
 # Clean and prepare data
-# analysis-template/clean/
-# Matt Dray
+# DATE
+# YOUR NAME HERE
 
 # Use this file for tidying data and preparing it for further analysis

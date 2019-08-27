@@ -1,5 +1,5 @@
 # Read data
-# analysis-template/src/
-# Matt Dray
+# DATE
+# YOUR NAME HERE
 
 # Use this file for reading in the raw data
