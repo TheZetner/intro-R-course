@@ -38,3 +38,11 @@ rsconnect/
 # macOS desktop services store
 .DS_Store
 .Rproj.user
+
+# Data folder ignores, delete #'s below to include
+# data/*
+# !data/.gitkeep
+
+# Output folder ignores and keeps, delete #'s below to include
+# output/*
+# !output/.gitkeep/
