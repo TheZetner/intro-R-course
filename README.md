@@ -21,7 +21,7 @@ Questions? [adrian.zetner@canada.ca](mailto:adrian.zetner@canada.ca)
 
 ### Files in the Main Folder
 
-* **.gitignore**: Only matters for version control. Tells Git which files it shouldn't monitor (eg. pictures, data)  
+* **.gitignore**: Only matters for version control. Tells Git which files it shouldn't monitor (eg. pictures, data). Has some commented lines for data and output folders that can be uncommented by the user in order to include data and output folders without their contents.    
 * **01_read.R**: Set up script to read in raw data and do basic cleaning  
 * **02_tidy.R**: Advanced cleaning and modification of data  
 * **03_model.R**: Statistical modelling from cleaned data
