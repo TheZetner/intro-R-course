@@ -1,0 +1,11 @@
+# .gitignore data
+###################
+
+# ignore all files in this dir...
+*
+
+# ... except for this one and the readme. 
+!README.md
+!.gitignore
+
+# Add other exceptions below, use '!' as a prefix

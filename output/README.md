@@ -8,3 +8,4 @@
 * Data that's been processed (CSV, RDS)
 * Not raw data, which belongs in `data/`
 * Any figures generated
+* This folder has it's own `.gitignore` file, if you want to track anything in this folder with git add it to the `.gitignore`

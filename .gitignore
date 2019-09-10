@@ -39,10 +39,12 @@ rsconnect/
 .DS_Store
 .Rproj.user
 
-# Data folder ignores, delete #'s below to include
+# Data folder ignores, delete #'s below to ignore the data folder
+# Alternately use the .gitignore file in the data folder for finer control
 # data/*
 # !data/.gitkeep
 
-# Output folder ignores and keeps, delete #'s below to include
+# Output folder ignores and keeps, delete #'s below to ignore the output folder
+# Alternately use the .gitignore file in the output folder for finer control
 # output/*
 # !output/.gitkeep/
