@@ -1,0 +1,93 @@
+Tip 1: Use formative assessment every 10–15 minutes
+Tip 2: Give learners and yourself a break every 45–90 minutes
+Tip 3: Use a variety of exercise types
+Tip 4: Use sticky notes to monitor progress and distribute attention
+Tip 5: Create a visible backlog
+Tip 6: Have learners take notes
+Tip 7: Present diagrams incrementally to complement other material
+Tip 8: Teach together
+Tip 9: Include everyone
+Tip 10: Enforce a code of conduct
+
+Next Workshop Advertisement: Project organization
+
+Exercises and quizzes here:
+All: Go here: https://git.io/r2020
+1. Click binder link
+2. Walkthrough: Explore RStudio
+    Make new Project: workshop2020
+    Look at files pane, see the .Rproj file identifying top level folder of project
+    Make the following folders: data, R, output
+    Copy data files from ~/data into workshop2020/data/
+    Set up some defaults in the project options: 
+        User-level setup: Do not save .RData when you quit R and don’t load .RData when you fire up R.
+            In RStudio, this behavior can be requested in the General tab of Preferences.
+            Daily work habit: Restart R very often and re-run your under-development script from the top.
+            If you use RStudio, use the menu item Session > Restart R or the associated keyboard shortcut Ctrl+Shift+F10 (Windows and Linux) or Command+Shift+F10 (Mac OS). You can re-run all code up to the current line with Ctrl+Alt+B (Windows and Linux) or Command+Option+B (Mac OS).
+    Run a few console commands: sessionInfo, help, example, list.files, sys.time, library(tidyverse)
+    Load RDA for next few exercises
+    Learn keyboard commands in console (up, ctrl+up)
+    Tab completion
+
+3. Packages
+    View installed packages: pane and installed.packages()
+    Install a new one with packages pane: snakecase
+    Look at help for it by clicking on name
+    Try to use a function
+    Attach (check box) and try again
+    Detach package (checkbox)
+    Attach it again with library
+    Install a new one in console: devtools 
+
+4. Functions
+    ls("package:snakecase") # Only works when it's attached
+    See what :: and ::: do
+    Examples of default options with round()
+    :
+    sample (replace on/off) # Do a dice example
+
+
+XX. Script
+    Transfer console work to script, 
+        add comments
+        add headers: explore them, alt+o/alt+shift+o
+
+
+XX. More console work
+    Identifying objects
+    Viewing datasets
+    List files in data/ex3
+    Make some sequences with :, Save those to objects
+    Install a package
+    Look at functions in a package
+        tab menu
+        ls("package:visdat") 
+
+XX. Errors, warnings etc
+    Function with and without ()
+    Function on wrong datatype
+    library(visdat) # No quotes needed
+    install.packages(visdat) # no quotes, show error
+    install.packages("visdat") # installs, repeat library statement
+    
+XX. Use the registration data for example stuff, include RDA with the repo, load it and then go.
+
+
+X. Pre-break, pre-lunch: save project folder as zip
+X+1. Post-break, post-lunch: upload project zip folder to continue
+
+[Take a blast hit table and add NCBI titles](https://gitlab.cscscience.ca/AZetner/useful-R-scripts/snippets/5)
+
+
+
+
+
+
+
+
+
+Quizzes:
+Put all links up on GH page, only start accepting responses when ready
+Lecture, exercise (activate quiz), section start, quiz, repeat
+
+Future exercises:
