@@ -40,12 +40,21 @@ All: Go here: https://git.io/r2020
     Install a new one in console: devtools 
 
 4. Functions 1
-    ls("package:snakecase") # Only works when it's attached
-    Using snakecase functions on names in faked table
-    Finding the max and mean of R experience
-    paste()
+    paste("hello", "world")
+        what is separator value?
+        Add "it's <YOUR FIRST NAME>" to the paste
     seq()
-    Examples of default options with round() 
+        1, 10
+        10, 1
+        1, 10, 2
+        10, 1, 2
+    Math operators are also functions but single symbols without parentheses:
+        *
+        /
+        +
+        Look at the available ones with ?Arithmetic
+    More advanced mathematical functions have explicit functions with arguments like round(), sqrt(), and abs()
+    Examples of default options with  
     
 5. Functions 2
     Attach package cranlogs
@@ -57,24 +66,34 @@ All: Go here: https://git.io/r2020
 6. Objects 1
     Assignment 
         age <- Your Age (bare number in years) eg age <- 33
-        url <- cranlogs:::base_url
+        first <- "YOUR FIRST NAME"
+        (url <- cranlogs:::base_url) # This will show what you are saving to url
         
-    Examination (class, str, click on in env pane, redo assignment and wrap in (), print(x))
-        age
-        url
-        
+    Examination (print, class, str, typeof, view and click on in env pane)
+        age        
+        url   
 
     Nesting functions as objects
-        Nest two paste commands to create an email address from your first name, last name, and "@mail.com"
+        round(pi, (sqrt(4)))
+        Nest two paste commands to create an email address from your first name, last name, and "@mail.com":
+            first paste first name and last name together with the separator "."
+            next wrap that in another past command to add @mail.com
 
 7. Objects 2: Vectors
-    Examine numeric vector 20:100 (str, mode, class, length, mean)
-    Examine character vectors LETTERS (str, mode, class, length, mean)
-    Making Vectors with : and c()
+    Examine two environment vars using print, class, typeof:
+        rexp1
+        rexp2
+    Apply some functions to those that work on the whole vector: length, max, sum, mean, is.na
+        What happens with sum and mean when used on rexp2? Look at the help for those functions to fix it. 
+        First time seeing logical values, what do they represent?
+    Making Vectors with :, runif(), and c()
     Examples of coercion with c(): c(1,2,3); c(1, 2, "Three") # NULL < logical < integer < double < character
     paste() the LETTERS vector to "Sample" with sep = " " (default) first
-    paste() the LETTERS vector to "Sample" with sep = "_"
         Now make a comma separated string of those sample names by including argument collapse=", "
+    paste() the LETTERS vector to "Sample" with sep = "_"           
+        Save as samples
+    Use sample() to make a subset of 10 of those samples. 
+
 
 
 XX. Script
