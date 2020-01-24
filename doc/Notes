@@ -33,7 +33,7 @@ All: Go here: https://git.io/r2020
     View installed packages: pane and installed.packages()
     Install a new one with packages pane: snakecase
     Look at help for it by clicking on name
-    Try to use a function
+    Try to use a function from snakecase 
     Attach (check box) and try again
     Detach package (checkbox)
     Attach it again with library
@@ -44,7 +44,7 @@ All: Go here: https://git.io/r2020
     Using snakecase functions on names in faked table
     Finding the max and mean of R experience
     paste()
-    Examples of default options with round(), 
+    Examples of default options with round() 
     
 5. Functions 2
     Attach package cranlogs (give 3 separa)
@@ -59,9 +59,13 @@ All: Go here: https://git.io/r2020
     Nesting functions as objects
 
 7. Objects 2: Vectors
-    Examine vectors (str, mode, class, length, mean, etc)
+    Examine numeric vectors (str, mode, class, length, mean, etc)
     Making Vectors with : and c()
     Examples of coercion with c()
+    paste() the LETTERS vector to "Sample" with sep = " " (default) first
+    paste() the LETTERS vector to "Sample" with sep = "_"
+        Now make a comma separated string of those sample names by including argument collapse=", "
+
 
 
 
