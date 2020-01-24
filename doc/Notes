@@ -44,32 +44,37 @@ All: Go here: https://git.io/r2020
     Using snakecase functions on names in faked table
     Finding the max and mean of R experience
     paste()
+    seq()
     Examples of default options with round() 
     
 5. Functions 2
-    Attach package cranlogs (give 3 separa)
-    See what :: and ::: do
-    Call formals on to_snake_case()
+    Attach package cranlogs
+    See what :: and ::: do (note that ::: includes data as well as functions)
+    Call formals on cran_downloads        
     Hit F1 on it, then F2. Does the description confirm what F2 tells you?
-    Help documentation
+    Look at Help documentation
 
 6. Objects 1
     Assignment 
-    Examination (glimpse, str, head)
+        age <- Your Age (bare number in years) eg age <- 33
+        url <- cranlogs:::base_url
+        
+    Examination (class, str, click on in env pane, redo assignment and wrap in (), print(x))
+        age
+        url
+        
+
     Nesting functions as objects
+        Nest two paste commands to create an email address from your first name, last name, and "@mail.com"
 
 7. Objects 2: Vectors
-    Examine numeric vectors (str, mode, class, length, mean, etc)
+    Examine numeric vector 20:100 (str, mode, class, length, mean)
+    Examine character vectors LETTERS (str, mode, class, length, mean)
     Making Vectors with : and c()
-    Examples of coercion with c()
+    Examples of coercion with c(): c(1,2,3); c(1, 2, "Three") # NULL < logical < integer < double < character
     paste() the LETTERS vector to "Sample" with sep = " " (default) first
     paste() the LETTERS vector to "Sample" with sep = "_"
         Now make a comma separated string of those sample names by including argument collapse=", "
-
-
-
-
-
 
 
 XX. Script
@@ -96,7 +101,8 @@ XX. Errors, warnings etc
     install.packages("visdat") # installs, repeat library statement
     
 XX. Use the registration data for example stuff, include RDA with the repo, load it and then go.
-
+    mutate(First_Name = randomNames(length(First_Name), "first"), # Why doesn't this work? Think argument order
+         Last_Name = randomNames(length(Last_Name), "last")) %>% 
 
 X. Pre-break, pre-lunch: save project folder as zip
 X+1. Post-break, post-lunch: upload project zip folder to continue
