@@ -4,4 +4,6 @@
 #install.packages("tidyr")
 
 install.packages("tidyverse")
-install.packages("rmarkdown")
+install.packages(c(
+    "rmarkdown",
+    "cranlogs"))

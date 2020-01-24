@@ -25,9 +25,9 @@ All: Go here: https://git.io/r2020
             Daily work habit: Restart R very often and re-run your under-development script from the top.
             If you use RStudio, use the menu item Session > Restart R or the associated keyboard shortcut Ctrl+Shift+F10 (Windows and Linux) or Command+Shift+F10 (Mac OS). You can re-run all code up to the current line with Ctrl+Alt+B (Windows and Linux) or Command+Option+B (Mac OS).
     Run a few console commands: sessionInfo, help, example, list.files, sys.time, library(tidyverse)
-    Load RDA for next few exercises
-    Learn keyboard commands in console (up, ctrl+up)
-    Tab completion
+    Load RDA for next few exercises    
+    Pull up keyboard commands help with alt+shift+k
+    Test tab completion
 
 3. Packages
     View installed packages: pane and installed.packages()
@@ -39,12 +39,33 @@ All: Go here: https://git.io/r2020
     Attach it again with library
     Install a new one in console: devtools 
 
-4. Functions
+4. Functions 1
     ls("package:snakecase") # Only works when it's attached
+    Using snakecase functions on names in faked table
+    Finding the max and mean of R experience
+    paste()
+    Examples of default options with round(), 
+    
+5. Functions 2
+    Attach package cranlogs (give 3 separa)
     See what :: and ::: do
-    Examples of default options with round()
-    :
-    sample (replace on/off) # Do a dice example
+    Call formals on to_snake_case()
+    Hit F1 on it, then F2. Does the description confirm what F2 tells you?
+    Help documentation
+
+6. Objects 1
+    Assignment 
+    Examination (glimpse, str, head)
+    Nesting functions as objects
+
+7. Objects 2: Vectors
+    Examine vectors (str, mode, class, length, mean, etc)
+    Making Vectors with : and c()
+    Examples of coercion with c()
+
+
+
+
 
 
 XX. Script
