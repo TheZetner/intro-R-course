@@ -11,6 +11,15 @@ Tip 10: Enforce a code of conduct
 
 Next Workshop Advertisement: Project organization
 
+Goals
+Work with projects in R and RStudio
+Open files, and edit and save scripts
+Understand basic R terminology
+Read data, select, filter, rearrange, and combine 
+Create simple visualizations
+Know where to get help
+
+
 Exercises and quizzes here:
 All: Go here: https://git.io/r2020
 1. Click binder link
@@ -72,17 +81,22 @@ All: Go here: https://git.io/r2020
     Examination (print, class, str, typeof, view and click on in env pane)
         age        
         url   
+    
+    Look at all objects in Environment
+    List all objects with ls()
+    Delete the extraneous object called deleteme
 
     Nesting functions as objects
         round(pi, (sqrt(4)))
         Nest two paste commands to create an email address from your first name, last name, and "@mail.com":
             first paste first name and last name together with the separator "."
-            next wrap that in another past command to add @mail.com
+            next wrap that in another past command to add @mail.com   
+    
 
 7. Objects 2: Vectors
     Examine two environment vars using print, class, typeof:
-        rexp1
-        rexp2
+        studentexp1
+        studentexp2
     Apply some functions to those that work on the whole vector: length, max, sum, mean, is.na
         What happens with sum and mean when used on rexp2? Look at the help for those functions to fix it. 
         First time seeing logical values, what do they represent?
@@ -93,6 +107,32 @@ All: Go here: https://git.io/r2020
     paste() the LETTERS vector to "Sample" with sep = "_"           
         Save as samples
     Use sample() to make a subset of 10 of those samples. 
+    Subset out the first through 3rd elements with []
+
+
+8. Dataframes and Tibbles
+    Call mtcars, then as.tibble(mtcars) to see the difference
+    Use View() to look at surveysheet
+    Use glimpse() to look at surveysheet
+    Use vis_dat() to look at surveysheet
+        What datatypes do you see? (chr, numeric, date)
+        What else do you see? (NA)
+    Use vis_miss(x , cluster=T) to see amount missing
+    Create the following tibbles 
+        Email and R_Experience
+        First_Name Last_Name Email
+
+9. Importing data
+    Import the differently named sample sheet with randomly generated scores and names
+        Use vis_compare to see the differences
+    Get remote data
+    
+
+10. Tidying data
+
+
+
+
 
 
 
