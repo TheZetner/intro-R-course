@@ -63,7 +63,8 @@ All: Go here: https://git.io/r2020
         +
         Look at the available ones with ?Arithmetic
     More advanced mathematical functions have explicit functions with arguments like round(), sqrt(), and abs()
-    Examples of default options with  
+    Examples of default options with the above functions
+    Calling summary on mtcars,   
     
 5. Functions 2
     Attach package cranlogs
@@ -92,7 +93,6 @@ All: Go here: https://git.io/r2020
             first paste first name and last name together with the separator "."
             next wrap that in another past command to add @mail.com   
     
-
 7. Objects 2: Vectors
     Examine two environment vars using print, class, typeof:
         studentexp1
@@ -109,7 +109,6 @@ All: Go here: https://git.io/r2020
     Use sample() to make a subset of 10 of those samples. 
     Subset out the first through 3rd elements with []
 
-
 8. Dataframes and Tibbles
     Call mtcars, then as.tibble(mtcars) to see the difference
     Use View() to look at surveysheet
@@ -118,17 +117,34 @@ All: Go here: https://git.io/r2020
         What datatypes do you see? (chr, numeric, date)
         What else do you see? (NA)
     Use vis_miss(x , cluster=T) to see amount missing
-    Create the following tibbles 
-        Email and R_Experience
-        First_Name Last_Name Email
+        How many people signed up at the survey?
+        How many people signed up at registration?
+        How many did both?
 
 9. Importing data
     Import the differently named sample sheet with randomly generated scores and names
         Use vis_compare to see the differences
-    Get remote data
+    Import kraken dataset
+    Get remote data via URL: 
+
     
 
-10. Tidying data
+10. DPLYR Basics
+    Create the following tibbles from surveysheet using select()
+        Email and R_Experience
+        First_Name Last_Name Email
+    Filter using
+        is.na()
+        logical expressions like 
+            R_Experience <= 2
+            Preference == "WebEx"
+            First_Name
+    Arrange
+
+
+11. Magrittr and DPLYR
+
+Tidying data
 
 
 
