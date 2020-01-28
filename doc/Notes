@@ -145,6 +145,7 @@ All: Go here: https://git.io/r2020
         Install package rentrez
         Blast hit table, pull in without headers
         Using pipes and dplyr rename replace XN col names with col_names = c("query", "subject", "pid", "alignment_length", "mismatches", "gap_opens", "q_start", "q_end", "s_start", "s_end", "evalue", "bit_score"))
+        Put this in the answer key: ```hittable %>% select(-c(paste("X", 7:10, sep = "")))```
         Try some of this stuff:
             group_by(query) %>% 
                 arrange(query, desc(bit_score)) %>% 
