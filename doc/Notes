@@ -110,7 +110,7 @@ All: Go here: https://git.io/r2020
     Use sample() to make a subset of 10 of those samples. 
     Subset out the first through 3rd elements with []
 
-8. Dataframes and Tibbles
+8. Dataframes and Tibbles (extend with examples from ex9.1/9.2)
     Call mtcars, then as.tibble(mtcars) to see the difference
     Calling summary on mtcars to get summary statistics   
     Use View() to look at surveysheet
@@ -131,7 +131,7 @@ All: Go here: https://git.io/r2020
 
     
 
-10. DPLYR Basics
+10. DPLYR Basics 
     Create the following tibbles from surveysheet using select()
         Email and R_Experience
         First_Name Last_Name Email
@@ -140,18 +140,18 @@ All: Go here: https://git.io/r2020
         logical expressions like 
             R_Experience <= 2
             Preference == "WebEx"
-            First_Name
-    Arrange
+            Timestamp < 2020-01-01
+            Something else?
+    Arrange based on
+        Timestamp        
+        First_Name
+        Last_Name
+    Extend with 13.2
+        
+11. Magrittr and DPLYR (Use 13.3 to build)
+        [Take a blast hit table and add NCBI titles](https://gitlab.cscscience.ca/AZetner/useful-R-scripts/snippets/5)
 
-
-11. Magrittr and DPLYR
-
-Tidying data
-
-
-
-
-
+12. Tidying data (14.2)
 
 
 XX. Script
@@ -184,7 +184,7 @@ XX. Use the registration data for example stuff, include RDA with the repo, load
 X. Pre-break, pre-lunch: save project folder as zip
 X+1. Post-break, post-lunch: upload project zip folder to continue
 
-[Take a blast hit table and add NCBI titles](https://gitlab.cscscience.ca/AZetner/useful-R-scripts/snippets/5)
+
 
 
 
