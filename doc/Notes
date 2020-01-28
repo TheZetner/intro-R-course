@@ -64,7 +64,7 @@ All: Go here: https://git.io/r2020
         Look at the available ones with ?Arithmetic
     More advanced mathematical functions have explicit functions with arguments like round(), sqrt(), and abs()
     Examples of default options with the above functions
-    Calling summary on mtcars,   
+    
     
 5. Functions 2
     Attach package cranlogs
@@ -72,6 +72,7 @@ All: Go here: https://git.io/r2020
     Call formals on cran_downloads        
     Hit F1 on it, then F2. Does the description confirm what F2 tells you?
     Look at Help documentation
+    Look at Help documentation for load() use it to load XXXX.RData    
 
 6. Objects 1
     Assignment 
@@ -111,6 +112,7 @@ All: Go here: https://git.io/r2020
 
 8. Dataframes and Tibbles
     Call mtcars, then as.tibble(mtcars) to see the difference
+    Calling summary on mtcars to get summary statistics   
     Use View() to look at surveysheet
     Use glimpse() to look at surveysheet
     Use vis_dat() to look at surveysheet
