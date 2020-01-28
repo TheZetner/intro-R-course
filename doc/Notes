@@ -110,7 +110,7 @@ All: Go here: https://git.io/r2020
     Use sample() to make a subset of 10 of those samples. 
     Subset out the first through 3rd elements with []
 
-8. Dataframes and Tibbles (extend with examples from ex9.1/9.2)
+8. Objects 3: Dataframes and Tibbles (extend with examples from ex9.1/9.2)
     Call mtcars, then as.tibble(mtcars) to see the difference
     Calling summary on mtcars to get summary statistics   
     Use View() to look at surveysheet
@@ -142,6 +142,21 @@ All: Go here: https://git.io/r2020
         
 10. Magrittr and DPLYR (Use 13.3 to build)
         [Take a blast hit table and add NCBI titles](https://gitlab.cscscience.ca/AZetner/useful-R-scripts/snippets/5)
+        Install package rentrez
+        Blast hit table, pull in without headers
+        Using pipes and dplyr rename replace XN col names with col_names = c("query", "subject", "pid", "alignment_length", "mismatches", "gap_opens", "q_start", "q_end", "s_start", "s_end", "evalue", "bit_score"))
+        Try some of this stuff:
+            group_by(query) %>% 
+                arrange(query, desc(bit_score)) %>% 
+                #summarise(min(bit_score), max(bit_score), min(evalue), max(evalue))
+                top_n(5) %>% 
+                mutate(title = {
+                    entrez_summary("nucleotide", subject) %>% 
+                    extract_from_esummary("title")
+                }) %>% 
+                select(query, subject, title, bit_score, evalue, pid)
+        Write it as tophits
+        
 
 11. Importing data
     Import the differently named sample sheet with randomly generated scores and names
