@@ -88,7 +88,7 @@ All: Go here: https://git.io/r2020
     Delete the extraneous object called deleteme
 
     Nesting functions as objects
-        round(pi, (sqrt(4)))
+        round(pi, digits = sqrt(4))
         Nest two paste commands to create an email address from your first name, last name, and "@mail.com":
             first paste first name and last name together with the separator "."
             next wrap that in another past command to add @mail.com   
