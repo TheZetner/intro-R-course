@@ -163,6 +163,8 @@ All: Go here: https://git.io/r2020
         Write it as tophits using write_table
         
 
+End of this session
+
 XX. Importing data
     Import the differently named sample sheet with randomly generated scores and names
         Use vis_compare to see the differences
