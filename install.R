@@ -6,4 +6,5 @@
 install.packages("tidyverse")
 install.packages(c(
     "rmarkdown",
-    "cranlogs"))
+    "cranlogs",
+    "visdat"))
