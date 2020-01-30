@@ -5,4 +5,3 @@
 
 Exercises and course content for January 31, 2020 R Course
 
-MAKE ACCESS POINT TO THIS SITE VIA THE CHECKIN SHEET FORM
