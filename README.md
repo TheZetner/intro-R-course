@@ -5,3 +5,6 @@
 
 Exercises and course content for January 31, 2020 R Course
 
+Find the Exercises here:  
+https://docs.google.com/document/d/1As8K0UqPUCVquMyT3apuIAOX1OSr37UFOOrPTk-dFfM/edit?usp=sharing
+
