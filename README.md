@@ -1,7 +1,7 @@
 # R Course 2020
 
 ## [Lectures](https://youtu.be/rbRLU_nMshw)
-## [Exercises](doc/exercises-complete.nb.html)
+## [Exercises](https://docs.google.com/document/d/1As8K0UqPUCVquMyT3apuIAOX1OSr37UFOOrPTk-dFfM/edit?usp=sharing)
 
 
 
