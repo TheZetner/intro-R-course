@@ -1,0 +1,1033 @@
+---
+title: 'Intro to R: Exercises'
+output:
+ rmarkdown::html_document:
+    theme: flatly 
+    highlight: tango 
+    toc: TRUE 
+    toc_float: TRUE 
+date: "January 31, 2020"
+---
+
+```{r Library Statements, include=FALSE}
+# Function to call multiple packages at once
+libraries <- function(names = NULL){
+  try(sapply(names, library, character.only=T))
+}
+
+# Attach needed packages
+libraries(c("rmarkdown", "cranlogs", "visdat", "rentrez"))
+
+```
+
+```{r load env, echo=FALSE}
+
+load("../data/env.RData")
+```
+
+## Exercise 0: Tips, Notebooks, Etc...
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r Example Chunk}
+print("Hello World!")
+```
+
+### Help Functions
+
+_Remember: if you get stuck, R has a number of built in help functions to get you going again._
+
+* Put the cursor on your function and hit F1
+
+* Use the `help()` function
+
+* Type `?functionname` into console
+
+* Type `??searchterm` into console
+
+* Google 
+
+### Tips and Tricks in R
+
+1. To pull up a list of RStudio keyboard shortcuts type Alt+Shift+k
+2. You can use tab completion in the console and source. Try typing `list.f` into your console and hitting Tab. This should complete the function to be `list.file()`. Try typing `ex` and hitting Tab. This should bring up a list of possible functions that begin with `ex`. Hit Tab again and it should complete the function with the first one in that list, which is the `example()` function.
+
+
+## Exercise 1: Loading a virtual RStudio environment
+
+_For us to get through the exercises today we need to load a virtual RStudio environment using an on-line service called Binder. If you are running this on a local version of RStudio carry on without launching Binder._
+
+1. Open the following link in a new window: [https://git.io/r2020](https://git.io/r2020)
+2. You will see a GitHub page called _The Zetner / intro-R-course_ 
+3. Scroll down until you see a section called _README.md_
+4. Within this section, click the icon [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/thezetner/intro-R-course/master?urlpath=rstudio). This will open a virtual environment called _Binder_ that provides our R environment for today. It will immediately start running commands within the terminal window to load the virtual R-studio environment. 
+5. This process can take some time so don’t worry! Once it has completed the tab name in browser will change from _Binder_ to _RStudio_
+6. You are now ready to move onto _Exercise 2_
+
+
+## Exercise 2: Explore RStudio
+
+_It is now time to get familiar with where things are and how things work within RStudio._
+
+
+### Making a project directory
+
+1. Make a new project by clicking:
+    a.  _File > New Project _
+    b.  _New Directory_
+    c.  _New Project_
+2. In the _Directory name_ field type: workshop2020
+3. Leave the subdirectory field as ~
+4. Click _Create Project_. This will update your Files Pane (bottom right corner) to now contain the project file called _workshop2020.Rproj._ Have a look to see that it is there.
+
+
+### Creating folders
+
+1. Now create the following folders by clicking the _New Folder_ icon within the Folders and naming each folder: data, R, output
+2. You should now have the three above named folder icons beneath the workshop2020.Rproj file in the File Pane
+
+
+### Copying files from one directory to another
+
+1. Click on the _Home_ icon within the File pane and then click on the _data_ folder
+2. Copy the files in the data folder to the data file in the workshop2020 directory (workshop2020/data/). 
+3. Do this by clicking the checkbox next to each file to select it
+4. Then click the _More_ menu and select _Copy to_… option. This will open a pane to select where to copy the file to. 
+5. Select _Home_ - double click _workshop2020_ - double click _data_ - click save. 
+
+
+### Running functions/commands in the console
+
+_Let’s test out running some functions in the console_
+
+1. In the console type `sessionInfo()`, press Enter. This function allows you to display information about the current R session - prints information related to the version of R being used, the OS, as well as the attached or loaded packages
+
+2. In the console type `help.start()`, press Enter. This function allows you to access general documentation about R. There are clickable hyperlinks to access different pages.
+
+3. In the console type `help(mean)`, press Enter. The `help()` function allows you to access documentation for R functions, data sets, and objects for packages. In this example we are asking for the documentation of the mean function.
+
+4. In the console type `example(mean)`, press Enter. The `example()` function allows you to see examples of how to use the function. In this example we are asking for examples of how to use the mean function.
+
+5. In the console type `list.files()`, press Enter. By default, the `list.files()` function lists the files and folders in your current working directory. Try it on the data directory.
+
+### Specific Issue Related to RStudio in Binder
+
+_Binder has a fairly restrictive timeout for RStudio instances, we don’t want our work to be lost so we’ll do a little behind the scenes terminal trick to keep it active._
+
+1. Click on the _Terminal_ tab
+2. Type `top` and press _Enter_
+3. Return to the Console tab 
+4. Do not open other tabs over this one in your chrome browser when locking your computer.
+
+
+
+```{r Exercise 2}
+#Exercise 2
+
+#Test out some commands in the console
+
+#SessionInfo() allows you to display information about the current R session
+sessionInfo()
+
+#help.start() allows you to access general documentation about R
+help.start()
+
+#help() allows you to access documentation for R functions, data sets , and objects for packages.
+help(mean)
+
+#example() allows you to see examples of how to use the function
+example(mean)
+```
+
+```{r list files, eval=FALSE}
+#list.files()  the files and folders in your current working directory
+list.files()
+```
+
+
+## Exercise 3: Viewing, installing, attaching and detaching packages
+
+
+1. _Viewing_ installed packages can be done in two ways:
+    a. Click on the Packages tab (bottom right pane). This will populate this pane with a list of installed packages.
+    b. Type `installed.packages()` into the console and hit Enter. This will populate the console with a list of the installed packages
+
+2. _Install_ a new package using the packages tab in pane. Click on the Packages tab, then click the install icon. 
+3. In the packages field type: snakecase. Click install. The package install process will be described in your console
+4. In the packages pane, scroll down to snakecase (which is now installed) click on it to open the snakecase documentation. Have a look at some of the available functions
+5. In the console try typing (remember tab completion!) the snakecase function: `to_upper_camel_case("hello world")`. What happens?
+6. _Attach_ the snakecase package by clicking the checkbox next to it in the packages pane
+7. Now try the function in step 5 again. What happens?
+8. _Detach_ the snakecase package by deselecting the checkbox next to it in the packages pane
+9. _Attach_ the snakecase package again using your console by using the `library()` function. Type `library(snakecase)` into your console. Check that it is attached by running the function step 5 again.
+10. Now try _installing_ a new package using your console. In the console type `install.packages("visdat")`. An install process should be described in your console as you saw previously when installing snakecase. The commands called in console will be stored in the history pane. You can copy these to a script using the _To Source_ icon above the history pane.
+
+```{r installed packages, eval=FALSE}
+#Exercise 3
+
+#View installed packages
+installed.packages()
+
+```
+
+```{r Exercise 3}
+#Install snakecase package using the packages pane
+
+#Attach snakecase package using the console
+library(snakecase)
+
+#Check snakecase package is attached
+to_upper_camel_case("hello world")
+```
+
+```{r visdat install, eval=FALSE}
+#Install a package using the console
+install.packages("visdat")
+
+```
+
+
+## Exercise 4: Functions part 1
+
+_Let's practice using some functions to get an understanding of how functions work and what they can do_
+
+1. We are going to start with the function `paste()`. Type `help(paste)` into the console to bring up the documentation page for the function. Have a quick look.
+2. Type `paste("hello", "world")`into your console. What has the `paste()` function done to its arguments “hello” and “world”?
+3. The `paste()` documentation mentions the argument `sep`, meaning separator. Type `paste("hello", "world", sep = "*")`into your console. What is the purpose of the `sep` argument? What is the default `sep` when not defined like in step 2?
+4. Try adding the argument` "it's &lt;YOUR NAME>" `to the arguments used in `paste()` in step 2.
+5. Next we will look at the` seq()` function. Use `help()` to look at the documentation.
+6. Type `seq(1,10)` into the console. What is the output?
+7. Type `seq(10,1)` into the console and check the output.
+8. Type `seq(1,10,2)` into the console. How has the output changed from step 6? What is the purpose of the `2` argument?
+9. Type `seq(10,1,2)` into the console. What happens? Read the error message and see if you can determine what needs to be changed to make the function work.
+10. Math operators are also functions but are used as single symbols without parentheses. Examples include *, `/`, and `+`. Type` 2*2` into your console, look at the output.
+11. Check the available math operators by typing `?Arithmetic` into your console.
+12. More advanced mathematical functions have explicit functions with arguments like: `round()`, `sqrt()`, and `abs()`. To learn more about these functions and their options `use help()`.
+13. Let’s try the function round(). The format of this function is `round(x, digits = 0), `where the default for the number of decimal places to round the first argument in the function to is` 0 `and given by the argument` digits =`
+14. Type` round(4.6, digits = 0)` into your console, look at the output. Now type `round(4.66, digits = 1)`, look at the output. 
+
+```{r Exercise 4}
+#Exercise 4
+
+#Practice using functions
+
+#First function is paste(). 
+#Learn what paste() does and its arguments by looking at the documentation
+help("paste")
+
+#Try using paste() to see what it carries out on the arguments supplied
+paste("hello", "world")
+
+#paste() converts the arguments, in this case "hello" and "world" to character strings separated by a space
+
+#What is the sep agrument used for in the paste()function? What is the sep default?
+paste("hello", "world", sep = "*")
+
+#sep argument defines the separator used when converting the first arguments to - 
+#character strings
+
+#When left undefined the default for sep is a space
+
+#Add the argument "it's <YOUR Name>" to paste()
+paste("hello", "world", "it's Bob")
+
+#Learn about the seq() function using help()
+help("seq")
+
+#Understanding the seq()
+seq(1,10)
+seq(10,1)
+
+#seq() generates a number sequence from the arguments provided
+
+#Understanding the arguments of seq()
+seq(1,10,2)
+try(seq(10,1,2)) # Note that the try() function allows the code to continue after this 
+
+# the 2 in the above seq() is the by argument which defines the increment of the sequence
+#seq(10,1,2) produces an error that indicates the wrong sign used in the 'by' argument
+#Correcting the error in the seq() function
+seq(10,1,-2)
+
+#Math operators are also functions
+2*2
+2/2
+2+3
+
+#Check the available math operators in R
+?Arithmetic
+
+#Advanced mathematical functions have explicit functions with argumetns
+#Look at the documentation for round(), sqrt(),and abs()
+help("round")
+help("sqrt")
+
+#Try out the round() functions and learn about the argument 'by'
+round(4.6, digits = 0)
+round(4.66, digits = 1)
+
+#The 'by' argument for round() defines the number of decimal places to round the first argument to
+#Default value for 'by' is 0
+```
+
+## Exercise 5: Functions part 2
+
+1. Attach the package `cranlogs`. Hint can use `library()` or packages pane. 
+2. Type` cranlogs::` into the console. Note the information given for cranlogs.
+3. Type `cranlogs::: `into the console. Note the information given for cranlogs. How did the information given differ between `:: `and `:::` ?
+4. Type `formals(cran_downloads)` into the console and hit _Enter _to see the arguments `cran_downloads` takes. 
+5. Hit the up arrow key in console to bring up the last command. Next use the arrow keys or the mouse to put the cursor on `cran_downloads`: hit F1. Notice what happens. Now hit F2. Does the description provided with F1 confirm what F2 tells you? 
+6. Look through help documentation called with F1
+7. Look at help documentation for `load()` using `help()`.
+8. Load `env.RData` using the `load()` function. If you are having trouble, try using the _Files_ pane instead. In the Files pane navigate to the data folder where `env.RData` is located. Click on the `env.RData` file and click Yes when prompted. Note the script that populates in the console that uses the load() function to load the `env.RData` file. 
+9. Create a new script (_File > New File > New Script_). 
+    a. Add the following as comment lines starting with #
+        1. Workshop Title 
+        2. Today’s Date
+        3. Your Name
+    b. Add a section label comment line: `# Library Statements ####`
+    c. Save it in `R` folder as `intro.R`
+
+```{r Exercise 5, eval=FALSE, warning=FALSE, message=FALSE}
+#Exercise 5 Functions-Part2
+
+#Attach the package cranlogs
+library(cranlogs)
+
+#Identify the difference between :: and ::: with cranlogs
+
+#Try cranlogs:: first. Do not hit enter
+cranlogs::
+#Pop-up box should display the functions of cranlogs
+
+#Try cranlogs::: do not hit enter
+cranlogs:::
+#The ::: displays the private functions and data - the purple icons available for cranlogs
+  
+#Call formals() on cran_downloads - do not hit enter
+formals(cran_downloads) 
+
+#First hit F1 - notice documentation pane populates
+#Then hit F2 - notice the source code for the function is displayed
+#Compare the usage statement in the documentation to the source code displayed with F2
+#Look at the help documentation for cran_downloads()
+```
+
+
+
+## Exercise 6: Objects part 1
+
+_Learning, exploring and understanding objects in R. Remember <span style="text-decoration:underline;">everything </span>in R is an object._
+
+1. Assigning objects. Type <code>rexp <- <em>YOUR LEVEL OF R EXPERIENCE</em> </code>(as a number between 1 and 5, eg. 3) into the console. This assigns the value of 3 to the object rexp. Note that this object has now been added to the environment pane.
+2. Type <code>first <- "YOUR FIRST NAME"</code> into the console to assign your first name to the object first.
+3. Repeat #2 with your last name, save it as <code>last</code>.
+4. Add another section label comment line to your script: <code># Object Definitions ####</code> 
+5. Copy your <code>first </code>and <code>last </code>object assignment commands from <em>History </em>into that section of your script.
+6. Access a private object (not exported to your environment when package attached) from the package cranlogs and save it as <code>url</code>. Run <code>url <- cranlogs:::base_url </code>in the console.
+7. Run 3 again but wrap the entire statement in parentheses: (<em>statement</em>). This will show what you are saving to _url_ while it’s being saved.
+8. <em>Examining</em> the features of objects using functions. Let’s try a few.
+9. Type <code>print(rexp)</code> into the console. What is the output? Type <code>print(url)</code> into the console. What is the output? What does the<code> print()</code> function do?
+10. Type <code>class(rexp)</code> into the console. What is the output? Type <code>class(url)</code> into the console. What is the output? What does the <code>class() </code>function do?
+11. Type <code>str(rexp)</code> into the console. Type <code>str(url)</code> into the console. What are the outputs and what does the <code>str() </code>function do?
+12. Type <code>typeof(rexp)</code> into the console. Type <code>typeof(url)</code> into the console. What are the outputs and what does the <code>typeof()</code> function do?
+13. <em>Look </em>at all of the objects in the environment by typing <code>ls()</code> into the console. Have a look at the output and compare that to the environment pane.
+14. <em>Delete</em> the object called <em>deleteme</em> using the <code>remove()</code> function. Try<code> help() </code>if needed. Check that it has been deleted by using ls() again.
+15. <em>Nesting</em> functions as objects.Type <code>round(pi, sqrt(4))</code> into the console. Note the output. Now type <code>round(pi, digits = sqrt(4))</code>. Note the output. What is the object in these two functions? Why does <code>round(pi, sqrt(4))and round(pi, digits = sqrt(4)) </code>return the same output?
+16. Practice nesting functions as objects
+  a. Use two nested<code> paste() </code>functions to create an email address from &lt;your first name>, &lt;your last name>, and &lt;@mail.com>
+  b. Use the <code>separator "."</code> between &lt;your first name> and &lt;your last name>.
+  c. The output should look like:<code>"[yourfirstname.yourlastname@mail.com](mailto:yourfirstname.yourlastname@mail.com)" </code>
+17. Save the result of #16 to the object <code>email </code>and copy that command from <em>History</em> into your script.
+
+```{r Exercise 6}
+#Exercise 6 Objects-Part1
+
+#Assign objects
+rexp <- 3
+first <- "Bob"
+last <- "Smith"
+url <- cranlogs:::base_url  #This will show what you are saving to url
+
+#Note the object's age, first and url have been added to the environment pane
+
+#Examining features of objects using functions
+
+print(rexp)
+print(url) 
+
+#print() prints the value of the object supplied
+
+class(rexp) 
+class(url) 
+
+#class() examines the features of objects and prints the type of object
+
+str(rexp)
+str(url) 
+
+#str() displays the basic structure of the object
+
+typeof(rexp)
+typeof(url) 
+
+#typeof() displays the type of an object. 
+#Every R object has an underlying "type"
+#The "type" determines the set of possible values for the object"
+#See help() for the possible types and values
+help(typeof)
+
+#Look at all the objects in the environment
+ls()
+#output should include: "deleteme", "first", "studentexp1", "Studentexp2","studentfirst", "studentlast", "surveysheet" and "url"
+
+#Delete the object called "deleteme" using remove()
+remove(deleteme)
+
+#If need more information on remove() use help()
+help(remove)
+
+#Check that "deleteme" object has been deleted from the environment using ls()
+ls()
+
+#Nesting functions as objects
+#Understanding what the object is
+#Understanding the order R processes functions
+round(pi, sqrt(4))
+round(pi, digits = sqrt(4)) 
+
+#The object in these two functions is sqrt(4)
+#R processes the inner most functions first
+#The sqrt(4) is processed and acts as a numeric object passed to the argument of round()
+#The Digits argument is not required as R processes the function in the proper order and assumes the format round(x, digits =)
+
+#Practice nesting functions as objects
+#Use two nested paste() functions to create an email address
+#Using <your first name>, <your last name>, and <@mail.com>
+#And use the separator "." between your first and last name
+paste(paste(first, last, sep = "."), "@mail.com", sep = "")
+
+email <- paste(paste(first, last, sep = "."), "@mail.com", sep = "")
+
+#Remember default for sep = is a space therefore need to define no space
+```
+## Exercise 7: Objects part 2 - Vectors
+
+_Remember everything in R is an object…_
+
+1. Examine two environment variables, `studentexp1` and `studentexp2`, using the `print()`, `class(),` and `typeof()` functions. Examine the outputs.
+2. Apply the following functions to the vectors, `studentexp1` and `studentexp2`: `length()`, `max()`, `sum()`, `mean()`, and `is.na()`
+3. Look at the outputs for each vector and compare them. What happens when `max()`, `sum()`, `mean()`, and `is.na()` are used on `studentexp2`? With the is.na() function, this is the first time we are seeing logical values as the output, what do they represent?
+4. Look at the documentation for `max()` using `help() `and determine how to run `max()` on `studentexp2` that removes the NA values from the computation. Repeat for `sum()` and `mean()`. 
+5. Apply each function to `studentexpt2` with the argument that removes NA from the computation.
+
+<br>
+_Making vectors_
+<br>
+
+6. Let’s start by making vectors with the : operator. Type into your console `x <- 1:8`, hit Enter then type `x` into your console and hit enter. You have now made the vector `x `a series of numbers from 1 to 8. 
+7. Next make a vector with `runif()`. Type `y <- runif(5)`. Take a look at your environment pane. You have now made the vector `y` that is a series of five random numbers between 0 and 1 generated by `runif()`.
+8. Now make vectors using the `c()` function. Type into the console `myvector1 <- c(1, 2, 3)`. Then type `myvector2 <- c(1, 2, "three")`.
+9. Look at the type of `myvector1` and `myvector2 `using `typeof()`.
+10. Look at the documentation for `c()` to understand how it applies coercion and the hierarchy it uses.
+
+<br>
+_Explore vectors further_
+<br>
+
+11. Type `paste("Sample", LETTERS)` into the console. Have a look at the output. Note R has a few built-in datasets and constants, LETTERS is one of these.
+12. Type the same command as above but include the argument `collapse = ", ". `Look at the output. How has the` collapse argument` changed the output?
+13. `paste()` "Sample" to `LETTERS` as above but with `sep = "_"`
+14. Make a vector called `Samples` from the script in step 14. Check the environment pane. 
+15. Check the` length()` of the `Samples `vector.
+16. Use `sample()` to make a subset of 10 elements from `Samples`. Check the arguments with help/?.
+17. Subset out the first through third elements of `Samples` using `[]. `Hint: Google “Subsetting in R”
+
+```{r Exercise 7}
+#Exercise 7 Objects-Part2 Vectors
+
+#Examine two environment variables "studentexp1" and "studentexp2"
+#Remember everything in R is an object so variables are also objects
+#Use paste(), class() and typeof() functions to examine the variables
+print(studentexp1) 
+class(studentexp1) 
+typeof(studentexp1) 
+
+print(studentexp2) 
+class(studentexp2) 
+typeof(studentexp2) 
+
+#Apply the following functions to the vectors studentexp1 and studentexp
+#length(), max(), sum(), mean() and is.na()
+length(studentexp1) 
+max(studentexp1) 
+sum(studentexp1) 
+mean(studentexp1) 
+is.na(studentexp1) 
+
+length(studentexp2) 
+max(studentexp2) 
+sum(studentexp2) 
+mean(studentexp2) 
+is.na(studentexp2) 
+
+#Because studentexp2 contains NA values output of the numerical computations of max(), sum(), mean() is NA
+#is.na() identifies which values are NA /  missing values
+#is.na() returns a logical vector of the same length as its argument x
+#is.na() returns TRUE for elements marked NA and FALSE otherwise
+#This is why when applied to studentexp1 or studentexp2 the number of FALSE or TRUE values is 18
+
+#Determine how to apply max(), sum() and mean() to studentexp2 where the NA vlaues are removed
+#Use help documentation 
+help("max")
+help("sum")
+help("mean")
+
+#For each function the argument na.rm = is neded to remove NA values from the computation
+max(studentexp2, na.rm = TRUE) 
+sum(studentexp2, na.rm = TRUE) 
+mean(studentexp2, na.rm = TRUE) 
+
+#Making vectors
+#Make a vector using the operator :
+x <- 1:8
+x
+
+#Make a vector using runif()
+y <- runif(5)
+y
+
+#Make vectors using c()
+myvector1 <- c(1, 2, 3)
+myvector1
+
+myvector2 <- c(1, 2, "Three")
+myvector2
+
+#Look at the type for each myvector1 and myvector2
+typeof(myvector1) 
+typeof(myvector2) 
+
+#Look at the documentation for c()
+help("c")
+
+#Vectors must have elements of the same type
+#c() function will coerce the elements to the same type
+#The coercion uses a hierarchy
+#Hierarchy is lower to higher types: NULL < logical < integer < double < character
+
+#Explore vectors further
+paste("Sample", LETTERS) 
+
+#Add the argument collapse to the above paste()
+paste("Sample", LETTERS, collapse = ", ") 
+
+#The collapse argument makes a string of the samples using a comma as a separator
+
+#Make a vector called Samples using paste() "Sample", LETTERS and sep = "_" argument
+Samples <- paste("Sample", LETTERS, sep = "_")
+Samples #output is the vector Samples with elements "Sample_A" "Sample_B" "Sample_C"...
+
+#Check length of Samples vector
+length(Samples) 
+
+#Use sample() function to a make a subset of 10 elements from Samples
+sample(Samples, 10)
+
+#Subset out the first through third elements of Samples using []
+Samples[c(1:3)] 
+
+```
+
+
+
+## Exercise 8: Dataframes and Tibbles
+
+Dataframes and tibbles are two very similar ways of storing tabular data. Let’s explore the difference between the two: 
+
+1. Attach the `tibble `package. 
+2. Type `mtcars` into the console and hit _Enter_ to view the ‘Motor Trend Car Road Tests’ dataframe. Note how the dataframe is presented in the console. 
+3. Type `as_tibble(mtcars)`into the console. Note how the tibble is presented in the console. How did the presentation differ between `mtcars` and `as_tibble(mtcars`)? 
+
+Now let’s take a look at the different ways to view information contained within a dataframe/tibble: 
+
+
+
+4. The **summary()** function gives you the basic statistics of each column such as the mean and median. Type `summary(mtcars)` to get the summary statistics of the dataset. 
+5. We’ve got a faked version of the registration/survey data for this course called `surveysheet` that was loaded with `env.RData`. Type `View(surveysheet)` to view the dataframe in a spreadsheet-style outside the console.  
+6. Take a glimpse at the dataframe by typing `glimpse(surveysheet)` into the console. The <code>glimpse()<strong> </strong></code>function makes it possible to see every column’s type and size in a concise way. 
+7. Attach the visdat package
+8. Type <code>vis_dat(surveysheet</code>) to explore the data types and missing values of the dataframe. What data types do you see (ex. chr,  numeric, date) in the “Plots” tab? Is there any missing data (NA)? 
+9. Investigate the missing data by typing <code>vis_miss(surveysheet, cluster=T)</code>. The <strong>vis_miss()</strong> function provides the percentages of missing data for each column and in total. By setting cluster=T (TRUE) we are specifying that we would like the rows to be arranged by missingness. 
+    a. What percentage of people had no preference (Webex or in-class)?
+    b. What percentage of the data is missing in total? In the <code>Timestamp_2</code> column?
+
+```{r  tibble, echo=FALSE}
+
+library(tibble) 
+
+```
+
+```{r library tibble, eval=FALSE}
+# Exercise 8 DataFrames and Tibbles 
+
+# Attach the tibble package 
+library(tibble) 
+
+```
+
+```{r Exercise 8, message=FALSE, warning=FALSE}
+# Identify the difference between Dataframes and Tibbles 
+
+# Try viewing the dataset as a dataframe 
+mtcars
+# The top line contains all the column names and the row names are listed down the left 
+
+# Try viewing the dataset as a tibble 
+as_tibble(mtcars)
+
+# Tibbles only print the first 10 rows and also reports the type of variable of each column  
+# Example: all the columns in mtcars are dbl or double-precision vectors (numeric values with decimal points)
+# The tibble method of consicely printing information in the console makes working with large datasets easier 
+
+# View the summary statistics 
+summary(mtcars) 
+
+# Use View() to look at the dataframe outside the console 
+#View(surveysheet)
+
+# Use glimpse() to look at the dataframe. Notice how it like a transposed tibble. 
+glimpse(surveysheet)
+
+
+# Attach the visdat package 
+library(visdat)
+
+# Use vis_dat to explore the data types and missing values of the dataframe
+vis_dat(surveysheet)
+# NA or missing data is in grey while the other types are color-coded 
+
+# Investigate the missing data 
+vis_miss(surveysheet, cluster=T)
+# What percentage of people had no preference (Webex or In-class)? 
+# 31.71%
+# What percentage of the data is missing in total? 
+# 23% 
+  
+
+# Extra: 
+# To view more information about the mtcars dataset you can type:
+?mtcars 
+
+```
+
+
+
+## Exercise 9: DPLYR Basics 
+
+_Remember dplyr verbs take the form: verb(tibble, arguments)_
+
+<br> 
+
+1. Attach the `dplyr` package
+
+<br>
+
+2. `rename()` the `First_Name` column to `Given_Name` 
+    a. Remember that rename’s arguments take the form `newcol = oldcol`
+    b. Did that change the object `surveysheet`? 
+    
+<br>
+
+3. Create these individual tibbles from surveysheet using `select()` _Remember to use '-' to remove columns and name those you want to keep_
+    a. `Email` and` R_Experience`
+    b. `First_Name Last_Name Email`
+    c. `Email` followed by `everything()` else
+    d. Remove the following columns: `Timestamp_2, R_Experience_2, R_Experience`
+    e. Only `First_Name` and `Last_Name` using ends_with()
+    f. Everything except `First_Name` and `Last_Name` using `ends_with()`
+    
+<br>
+
+4. `filter()` using
+    a. `is.na()` on the `Timestamp_1` column
+    b. logical expressions like 
+        i. `R_Experience` &lt;= 2
+        ii. `R_Experience` above 3
+        iii. `Preference == "WebEx"`
+        iv. `Timestamp &lt; 2020-01-01`
+        v. Both `Timestamp_1` and `Timestamp_2` not `NA`
+        
+<br>
+
+5. `arrange()` based on
+    a. `First_Name`
+    b. `Last_Name`
+    c. `Preference, Timestamp ` 
+    
+<br>
+
+6. If we were to `mutate()` a new column based on `R_Experience` to show the person’s R experience as a percentage we would use the following:
+    a.  `mutate(surveysheet, R_Exp = R_Experience * 20)`
+    b. How would we change that mutate call to express that new column as a decimal instead of percentage?
+    
+<br>
+  
+7. Create a new column with `mutate() `by pasting `First_Name` and `Last_Name` together. How would you use `snakecase::to_lower_upper_case()` on that new column? 
+
+```{r dplyr, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+```
+
+
+```{r library dplyr, eval=FALSE}
+#Exercise 9 DPLYR Basics
+
+#Remember dplyr verbs take the form: verb(tibble, arguments)
+
+#Attach the dplyr package
+library(dplyr)
+
+```
+
+```{r Exercise 9}
+
+#rename() the First_Name column to Given_Name
+rename(surveysheet, Given_Name = First_Name) 
+#This prints a tibble of surveysheet where now the first column is Given_Name
+
+#Did this change the object surveysheet? Take a look at surveysheet
+#View(surveysheet)
+glimpse(surveysheet)
+
+#First column is still First_Name in the object surveysheet
+#Would need to re-write surveysheet to modify the object surveysheet
+#To re-write: surveysheet <- rename(surveysheet, Given_Name = First_Name)
+
+#Create individual tibbles from surveysheet using select()
+#Remember to use - to remove columns and name what you want to keep
+
+#Email and R_Experience
+select(surveysheet, Email, R_Experience)
+
+#First_Name Last_Name Email
+select(surveysheet, 1:3)
+
+#Email followed by everything() else
+select(surveysheet, Email, everything())
+
+#Remove the following columns:
+#Timestamp_2
+#R_Experience_2
+#R_Experience
+select(surveysheet, -Timestamp_2, -R_Experience_2, -R_Experience)
+
+#Show only First_Name  and Last_Name using ends_with()
+select(surveysheet, ends_with("Name"))
+
+#Everything except First_Name and Last_Name using ends_with()
+select(surveysheet, -ends_with("Name"))
+
+#filter() using is.na() on the Timestamp_1 column
+filter(surveysheet, is.na(Timestamp_1))
+
+#filter() using the following logical expressions:
+#R_Experience <=2
+filter(surveysheet, R_Experience <= 2)
+
+#R_Experience above 3
+filter(surveysheet, R_Experience > 3) #Try this again by wrapping it in glimpse()
+#Wrapping in glimpse() allows you to view the R_Experience filtered column
+
+#Preference == "WebEx"
+filter(surveysheet, Preference == "WebEx")
+glimpse(filter(surveysheet, Preference == "WebEx"))
+
+#Timestamp < 2020-01-01
+filter(surveysheet, Timestamp_1 < "2020-01-01")
+
+#Both Timestamp_1 and Timestamp_2, which are not NA
+filter(surveysheet, !is.na(Timestamp_1) &!is.na(Timestamp_2))
+#Note: ! operator indicates Not
+
+#arrange() based on:
+#First_Name
+arrange(surveysheet, First_Name)
+
+#Last_Name
+arrange(surveysheet, Last_Name)
+
+#Preference, Timestamp
+arrange(surveysheet, Preference, Timestamp_1, Timestamp_2)
+
+#Using the mutate() function
+#To create a new column based on R_Experience to show the experience as a percentage
+mutate(surveysheet, R_Exp = R_Experience *20)
+
+#Change the mutate() call to express the new column as a decimal
+mutate(surveysheet, R_Exp = R_Experience *.2)
+
+
+#Create a new column with mutate() by pasting First_Name and Last_Name together
+mutate(surveysheet, Name = paste(First_Name, Last_Name))
+
+#How would you use snakecase::to_lower_upper_case() on that new column?
+mutate(surveysheet, 
+       CombNames = snakecase::to_lower_upper_case(
+                                                  paste(First_Name, 
+                                                        Last_Name))) %>% 
+                                                                      View
+```
+
+
+
+## Exercise 10: DPLYR and Magrittr Pipes
+
+The pipe (<code>%>%</code>) operator is a very useful way of taking the output of one statement and making it the input of the next statement. It also makes complex code a lot easier to read and understand. </em>
+
+<br>
+
+Keyboard shortcuts for the pipe operator: 
+
+*   Windows/Linux: `CTRL + SHIFT + M `
+*   OSX:	 `CMD + SHIFT + M `
+
+<br>
+
+
+1. Create a new R Script called surveymod.R
+    a. Add titles, then library, objects, and code sections (with # NAME ####)
+    
+<br>
+    
+2. In the library section attach the following packages
+    a. `dplyr`
+    b. `magrittr`
+    
+<br>
+    
+3. Create a new minimal list from `surveysheet`. Using `magrittr` pipes to connect `dplyr` verbs create a tibble that shows only the following:
+    a. A renamed `Email` column to `Contact_Info, First_Name` column to `Given_Name`, and `Last_Name` column to `Surname.`
+    b. Columns in order of `Contact_Info`, `Given_Name`, `Surname` then `everything` else
+    c. Tibble arranged by first `Timestamp_1`
+    d. Save that to the object `newsurvey `
+    
+<br>
+    
+4. Create a new row in that tibble using dplyr’s `add_row()` function
+    a. Look at the help for `add_row()`
+    b. Glimpse newsurvey to see what columns you need
+        1. Include `Contact_Info`, `Given_Name`, `Surname, Preference, `and` R_Experience `
+        2. Use either “In-Class” or “WebEx” for Preference and estimate your current R Experience with a number from 1-5
+    c. Separate your column names with commas \
+	Eg. `newsurvey %>% add_row(First_Name = first, Last_Name = …)`
+    d. Pipe the result into `View()` and see your addition
+
+<br>
+
+5. Create an email list for Webex participants. Using `magrittr` pipes to connect `dplyr` verbs pull a vector of `Contact_Info` from your `newsurvey` tibble:
+    a. Filter out the In-Class people using the `Preference` column and a logical expression to choose either the answers `WebEx` **OR** `NA`
+    b. Use `pull()` to get a vector of emails from `Contact_Info`
+    c. Use `paste()` to make that into an Outlook compatible list of emails by collapsing them together with a semi-colon and a space (hint: `collapse = "; "`).  Remember that 
+    d. Bask in the glory that is your email list.  
+    
+```{r Exercise 10}
+#Excercise 10 DPLYR and Magrittr Pipes
+
+#Create a new minimal list from surveysheet
+#Use magrittr pipes to connect dplyr verbs
+#Create a tibble that shows the following:
+
+newsurvey <- surveysheet %>% #saves the tibble to the object newsurvey
+  arrange(Timestamp_1) %>%   #arranges by column Timestamp_1
+  dplyr::rename(Contact_Info = Email, #renames the columns
+         Given_Name = First_Name, 
+         Surname = Last_Name) %>%
+  select(Contact_Info,  # selects the order of the columns
+         Given_Name, 
+         Surname, 
+         everything())
+
+#Create a new row in the tibble using dplyr's new_row() function
+#Glimpse newsurvey to see what columns you need
+glimpse(newsurvey)
+newsurvey %>% add_row(Given_Name = first, 
+                      Surname = last, 
+                      Contact_Info = email, 
+                      Preference = "WebEx", 
+                      R_Experience = rexp) %>% View
+
+#Create an email list for WebEx participants
+#Using magritter pipes to connect dplyr verbs
+#Pull a vector of Contact_Info from your newsurvey tibble:
+
+newsurvey %>% filter(Preference == "WebEx" | is.na(Preference)) %>%
+  pull(Contact_Info) %>% 
+  paste(collapse = "; ")
+
+#Make the above an object called emaillist
+emaillist <- newsurvey %>% 
+  filter(Preference == "WebEx" | is.na(Preference)) %>%
+  pull(Contact_Info) %>% 
+  paste(collapse = "; ")
+```
+
+
+
+## Exercise 11: Readr, Magrittr, and DPLYR 
+
+<br>
+
+1. Create a new R Script name blastmod.R
+    a. Add titles, then library, objects, and code sections (with # NAME ####)
+
+<br>
+
+2. In the library section attach the following packages
+    a. `dplyr`
+    b. `magrittr`
+    c. `Rentrez`
+    d. `readr`
+    
+<br> 
+    
+3. Read in the blast hit table (hittable) from your data folder using RStudio’s menu items _Import Dataset > From Text(readr). _
+    a. Untick _First Row as Names_
+    b. Assign it to the object `hittable` in your environment
+
+<br> 
+
+4. Look at the history pane for the `read_csv()` function call that RStudio created. Copy that into your script.
+
+<br> 
+
+5. Use `vis_dat()` to take a look at the table. Take note of what the column names are, we will be renaming them.
+
+<br>
+
+6. Rename the column names of hittable using pipes and dplyr to:
+
+```{r rename, eval= FALSE}
+
+ c("query", "subject", "pid", "alignment_length", "mismatches", "gap_opens", "q_start", "q_end", "s_start", "s_end", "evalue", "bit_score")
+
+```
+   
+  a. Use `setNames()`, a base R function.  
+  b. Make sure to write the changes back to hittable with `<-`
+
+<br> 
+
+The following steps (7-10) should all be part of <span style="text-decoration:underline;">one</span> continuous function linked by pipes 
+
+<br> 
+
+7. Rearrange the query sequences by descending order of bit scores using:
+    a. `group_by()` to split the data frame by query sequence 
+    b. `arrange()` to reorder the rows according to the order and `desc()` to sort based on descending bit scores  
+    
+<br> 
+    
+8. Continuing on from #6, pipe the top 5 best hits 
+    a. `top_n()` to select the top 5 rows 
+
+<br> 
+
+9. Add the following pipes after `top_n()` to add summaries of the sequences from NCBI as a column and to name the column as `title`
+
+<br>      
+
+```{r mutate, eval=FALSE}        
+        %>% 
+          mutate(title = {
+            entrez_summary("nucleotide", subject) %>% 
+              extract_from_esummary("title")
+          }) %>% 
+```        
+</br>
+
+10.  Select only the `query,subject,title,bit_score,evalue,pid` columns 
+    a. Use `select()`
+    
+<br> 
+    
+11. Run that pipeline again and save to the object tophits
+
+<br> 
+
+12. Take a look at `tophits`. What is the top bit score? 
+
+<br> 
+
+13. Write the tophits table and save it in your workshop2020/output folder using `write_tsv()`
+
+
+```{r Exercise 11, warning=FALSE, message=FALSE}
+# Exercise 11 Readr, Magrittr and DPLYR 
+
+
+# Library Statements 
+# Install the "rentrez" package if needed
+# install.packages("rentrez")
+library(rentrez)
+library(dplyr)
+library(magrittr) 
+library(readr)
+
+```
+
+```{r hittable view, eval=FALSE}
+# Objects ####
+
+# Load the blast hit table (should be in your data folder) 
+hittable <- read_csv("~/repos/intro-R-course/data/hittable.csv", 
+                     col_names = FALSE)
+```
+
+```{r hittable, echo=FALSE}
+
+hittable <- read_csv("../data//hittable.csv", 
+                     col_names = FALSE)
+```
+
+```{r Exercise 11 continued}
+# Examining the blast hit table 
+vis_dat(hittable)
+
+# Code ####
+# Rename the columns, notice how the hittable must be rewritten to save the changes 
+hittable <- hittable %>% 
+  setNames(c("query", "subject", "pid", "alignment_length", "mismatches", "gap_opens", "q_start", 
+             "q_end", "s_start", "s_end", "evalue", "bit_score"))
+
+# Rearrange the query sequences by descending order of bit scores, when you use the %>% you read from left to right 
+tophits <- hittable %>% 
+  group_by(query) %>% 
+  arrange(query, desc(bit_score)) %>% 
+  top_n(5) %>% 
+  mutate(title = {
+    entrez_summary("nucleotide", subject) %>% 
+      extract_from_esummary("title")
+  }) %>% 
+  select(query, subject, title, bit_score, evalue, pid)
+
+# View tophits 
+# View(tophits)
+# There are multiple sequences with the same bit score leading to more 
+# than 5 sequences being kept in tophits 
+# Top bit score is 654
+```
+
+```{r write tophits, eval=FALSE}
+# Write the tophits table 
+write_tsv(tophits, "~/workshop2020/output/tophits.tsv")
+
+```
+
+
+
+
+*Wow. You made it! Good Job!*
+
